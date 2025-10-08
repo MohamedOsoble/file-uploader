@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="style.css" rel="stylesheet">
+  <title>Mohamed's File Hoster</title>
+</head>
+
+<body>
+  <div class="page-wrapper">
+    <%-include('partials/nav')%>
+    <div class="content">
+      <div class="content-header">
+      </div>
+      <div class="form-container">
+        <h1>Login:</h1>
+        <form action="/register" method="POST">
+          <label for="username">Username: </label>
+          <input type="text" name="username">
+          <label for="password">Password: </label>
+          <input type="password" name="password">
+          <br>
+          <button class="green-btn" type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer">
+      <footer>Some footer text like Mohamed 2025</footer>
+    </div>
+  </div>
+</body>
+
+</html>

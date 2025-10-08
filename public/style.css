@@ -1,0 +1,95 @@
+* {
+    font-family: monospace, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+html, body {
+    height: 100vh;
+    width: 99vw;
+}
+
+/* Create a top navigation bar with a black background color  */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a.left {
+    margin-left: 1%;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Create a right-aligned (split) link inside the navigation bar */
+.topnav a.right {
+  float: right;
+  color: white;
+  margin-right: 1%;
+}
+
+.page-wrapper{
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content-header{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container form{
+    display: flex;
+    flex-direction: column;
+}
+
+.green-btn {
+background-color: #04AA6D;
+  border: none;
+  color: white;
+  padding: 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+footer {
+    align-items: center;
+    justify-content: center;
+}
+
+.footer {
+    align-items: center;
+    justify-content: center;
+}

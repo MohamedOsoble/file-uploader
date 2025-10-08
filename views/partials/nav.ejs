@@ -1,8 +1,12 @@
 <div class="topnav">
   <a href="/" class="left">Home</a>
+  <% if(user){ %>
   <a href="/profile" class="left">Profile</a>
   <a href="/upload" class="left">Upload</a>
+  <a href="/myfiles" class="left">My Files</a>
   <a href="/logout" class="right">Logout</a>
+  <%} else { %>
   <a href="/login" class="right">Login</a>
   <a href="/register" class="right">Register</a>
+  <% }%>
 </div>

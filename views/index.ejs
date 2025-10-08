@@ -11,15 +11,18 @@
 <body>
   <div class="page-wrapper">
     <%-include('partials/nav')%>
+    <div class="content-header">
+      <h1>Welcome to the file uploader</h1>
+    </div>
     <div class="content">
-      <div class="content-header">
-        <h1>Welcome to the file uploader</h1>
-      </div>
+
       <div class="card-container">
         <div class="card">
           <a href="/upload">Upload a new File</a>
         </div>
-        <div class="card">View my files</div>
+        <div class="card">
+          <a href="/myfiles">View my files</a>
+        </div>
       </div>
     </div>
     <div class="footer">

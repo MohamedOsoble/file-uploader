@@ -18,20 +18,21 @@
         <h1>Please register:</h1>
         <form action="/register" method="POST">
           <label for="firstName">First name:</label>
-          <input type="text" name="firstName">
+          <input type="text" name="firstName" required>
           <label for="lastName">Last name: </label>
-          <input type="text" name="lastName">
+          <input type="text" name="lastName" required>
           <label for="username">Username: </label>
-          <input type="text" name="username">
+          <input type="text" name="username" required>
           <label for="email">Email: </label>
-          <input type="email" name="email">
+          <input type="email" name="email" required>
           <label for="password">Password: </label>
-          <input type="password" name="password">
+          <input type="password" name="password" required>
           <label for="conPassword">Confirm Password: </label>
           <input type="password" name="conPassword">
           <br>
           <button class="green-btn" type="submit">Register</button>
         </form>
+        <%- include("partials/errors.ejs") %>
       </div>
     </div>
     <div class="footer">

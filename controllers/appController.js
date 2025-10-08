@@ -9,3 +9,7 @@ module.exports.homeGet = async function (req, res, next) {
 module.exports.registerGet = async function (req, res, next) {
   res.render("register");
 };
+
+module.exports.profileGet = async function (req, res, next) {
+  res.render("profile");
+};

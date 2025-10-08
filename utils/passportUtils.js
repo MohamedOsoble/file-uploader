@@ -34,7 +34,18 @@ passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
-passport.deserializeUser((userId, done) => {
-  const user = db.getUserById(userId);
+passport.deserializeUser(async (userId, done) => {
+  let user = await prisma.user.findFirst({
+    where: {
+      id: userId,
+    },
+    include: {
+      uploadedFiles: true,
+      profile: true,
+      _count: {
+        select: { uploadedFiles: true },
+      },
+    },
+  });
   done(null, user);
 });

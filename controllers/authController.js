@@ -16,9 +16,11 @@ module.exports.loginSuccess = async function (req, res, next) {
 
 module.exports.loginFailure = async function (req, res, next) {
   res.render("login", {
-    error: {
-      msg: "Login failed, please doublecheck your username and/or password",
-    },
+    errors: [
+      {
+        msg: "Login failed, please double check your username and/or password",
+      },
+    ],
   });
 };
 
@@ -74,4 +76,21 @@ module.exports.registerSuccess = async function (req, res, next) {
   res.render("/login", {
     messages: ["Registration Successful, please log in"],
   });
+};
+
+module.exports.logoutGet = async function (req, res, next) {
+  await req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/login");
+  });
+};
+
+module.exports.protected = async function (req, res, next) {
+  if (!req.isAuthenticated()) {
+    // Passport's built-in method
+    return res.status(401).send("Unauthorized"); // Or redirect to login
+  }
+  next();
 };

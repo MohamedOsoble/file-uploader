@@ -15,32 +15,35 @@
       <div class="content-header">
         <h1>Welcome to the file uploader</h1>
       </div>
-      <ul class="profile">
-        <li>
-          <strong>Name: </strong><%=user.profile.firstName%> <%= user.profile.lastName%>
-        </li>
-        <li>
-          <strong>Email: </strong><%=user.email%>
-        </li>
-        <li>
-          <strong>Age: </strong><%=user.profile.age%>
-        </li>
-        <li>
-          <strong>Role: </strong><%=user.role%>
-        </li>
-        <li>
-          <strong>Bio: </strong><%=user.profile.bio%>
-        </li>
-        <li>
-          <strong>Total Files Uploaded: </strong><%=user._count.uploadedFiles%>
-        </li>
-      </ul>
-    </div>
-    <div class="profile-container">
-      <div class="footer">
-        <footer>Some footer text like Mohamed 2025</footer>
+      <div class="profile-container">
+        <ul class="profile">
+          <li>
+            <strong>Name: </strong><%=user.profile.firstName%> <%= user.profile.lastName%>
+          </li>
+          <li>
+            <strong>Email: </strong><%=user.email%>
+          </li>
+          <li>
+            <strong>Age: </strong><%=user.profile.age%>
+          </li>
+          <li>
+            <strong>Role: </strong><%=user.role%>
+          </li>
+          <li>
+            <strong>Bio: </strong><%=user.profile.bio%>
+          </li>
+          <li>
+            <strong>Total Files Uploaded: </strong><%=user._count.uploadedFiles%>
+          </li>
+        </ul>
+        <a class="green-btn" href="/edit-profile">Edit Profile</a>
       </div>
     </div>
+
+    <div class="footer">
+      <footer>Some footer text like Mohamed 2025</footer>
+    </div>
+
 </body>
 
 </html>

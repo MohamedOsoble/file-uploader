@@ -69,6 +69,8 @@ html, body {
 .content-header{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .form-container form{
@@ -88,6 +90,11 @@ background-color: #04AA6D;
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 6px;
+}
+
+.profile-container {
+    align-items: center;
+    justify-content: center;
 }
 
 footer {

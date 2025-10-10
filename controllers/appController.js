@@ -1,6 +1,10 @@
 // Imports
 const validators = require("../utils/validators");
 const { all } = require("../routes/routes");
+const { PrismaClient } = require("../generated/prisma");
+
+// Instantiate Prisma Client
+const Prisma = new PrismaClient();
 
 module.exports.homeGet = async function (req, res, next) {
   res.render("index");
@@ -14,10 +18,10 @@ module.exports.profileGet = async function (req, res, next) {
   res.render("profile");
 };
 
-module.exports.protected = async function (req, res, next) {
-  if (!req.isAuthenticated()) {
-    // Passport's built-in method
-    return res.status(401).send("Unauthorized"); // Or redirect to login
-  }
-  next();
+module.exports.resetDb = async function (req, res, next) {
+  await Prisma.folder.deleteMany({});
+
+  await Prisma.user.deleteMany({});
+  await Prisma.profile.deleteMany({});
+  return res.redirect("/");
 };

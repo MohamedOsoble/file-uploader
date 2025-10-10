@@ -12,25 +12,78 @@
   <div class="page-wrapper">
     <%-include('partials/nav')%>
     <div class="content-header">
-      <h1>Welcome to the file uploader</h1>
+      <h1>Current Folder: <%=currentFolder.name%></h1>
     </div>
     <div class="content">
-      <% console.log(user) %>
-      <div class="card-container">
-        <div class="card">
-          <a href="/upload">Upload a new File</a>
+      <div class="files-options-container">
+        <a href="/newfolder">New Folder</a>
+        <a href="/upload">Upload a new File</a>
+      </div>
+      <div>
+        <%if(locals.currentFolder.parentId){%>
+        <div class="folder-wrapper">
+          <div class="folder"></div>
+          <a href="/<%=currentFolder.parentId%>">
+            Go to parent
+          </a>
         </div>
-        <div class="card">
-          <% locals.user.uploadedFiles.forEach((file) => { %>
-          <%- include('partials/file', {file: file}) %>
+        <div class="button-container">
+          <a class="green-btn" href="/edit/<%=currentFolder.id%>">Edit folder</a>
+          <form action="/delete-folder" method="POST">
+            <input hidden name="folder_id" value="<%=currentFolder.id%>">
+            <button class="red-btn" type="submit">Delete folder</button>
+          </form>
+        </div>
+        <%}%>
+        <% if(currentFolder.children.length < 1 && currentFolder.files.length < 1){ %>
+        <h1>You currently have no files or sub directories in this folder</h1>
+        <p>Click <a href="/upload"> here</a> to upload a file</p>
+        <p>Click <a href="/newfolder">here</a> to create a new folder</p>
+        <%} else { %>
+        <%if(currentFolder.children) { %>
+        <h1>Sub folders:</h1>
+        <div class="folder-container">
+          <%currentFolder.children.forEach((child) => { %>
+          <div class="folder-wrapper">
+            <div class="folder"></div>
+            <a href="/<%=child.id%>">
+              <%=child.name%>
+            </a>
+          </div>
+          <%} )%>
+          <%}%>
+        </div>
+        </div>
+        <div class="files-container">
+            <h1>Files: </h1>
+        <%if(currentFolder.files.length > 0){%>
+          <% currentFolder.files.forEach((file) => {%>
+          <div class="file-wrapper">
+            <div class="file"></div>
+            <div class="file-data">
+              <p> <%=file.name%></p>
+              <div class="button-container">
+                <a class="green-btn" href="/uploads/<%=file.id%>">Download</a>
+                <a class="green-btn" href="viewfile/<%=file.id%>">View file</a>
+                <form action="/delete-file" method="POST">
+                  <input name="file_id" value="<%=file.id%>" hidden>
+                  <button type="submit" class="red-btn">Delete</button>
+                </form>
+              </div>
+            </div>
+          </div>
           <%})%>
+          <%} else { %>
+          <h3>There are no files in this folder</h3>
+          <%}%>
+        </div>
+        <%}%>
         </div>
       </div>
+      <div class="footer">
+        <footer>Some footer text like Mohamed 2025</footer>
+      </div>
     </div>
-    <div class="footer">
-      <footer>Some footer text like Mohamed 2025</footer>
-    </div>
-  </div>
 </body>
 
 </html>

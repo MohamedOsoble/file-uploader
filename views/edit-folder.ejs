@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="style.css" rel="stylesheet">
+  <link href="../style.css" rel="stylesheet">
   <title>Mohamed's File Hoster</title>
 </head>
 
@@ -15,20 +15,23 @@
       <div class="content-header">
       </div>
       <div class="form-container">
-        <h1>Upload a new file</h1>
-        <form action="/upload" method="POST" enctype="multipart/form-data">
-          <label for="file_name">File name: </label>
-          <input type="text" name="file_name">
-          <label for="parent_folder">Parent folder: </label>
-          <select name="parentfolder">
+        <h1>Update folder:</h1>
+        <form action="/edit-folder" method="POST">
+          <input hidden name="folder_id" value="<%=currentFolder.id%>">
+          <label for="folder_name">Folder name: </label>
+          <input type="text" name="folder_name" value="<%=currentFolder.name%>">
+          <label for="parent">Parent </label>
+          <select name="parent_folder">
             <% user.folders.forEach((folder) => { %>
             <option value="<%=folder.id%>"><%=folder.name%></option>
             <%})%>
           </select>
-          <label for="uploaded_file">Select File: </label>
-          <input type="file" class="form-control-file" name="uploaded_file">
           <br>
-          <button class="green-btn" type="submit">Upload</button>
+          <button class="green-btn" type="submit">Update</button>
+        </form>
+        <form action="/delete-folder" method="POST">
+          <input hidden name="folder_id" value="<%=currentFolder.id%>">
+          <button class="red-btn" type="submit">Delete folder</button>
         </form>
       </div>
       <%- include("partials/errors") %>

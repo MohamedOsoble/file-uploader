@@ -66,14 +66,29 @@ module.exports.registerPost = async function (req, res, next) {
           bio: "There's nothing here...",
         },
       },
+      folders: {
+        create: {
+          name: "root",
+        },
+      },
     },
   });
-  console.log(user);
-  res.redirect("/register-succes");
+
+  const userEntry = await Prisma.user.findFirst({
+    where: { id: user.id },
+    include: {
+      folders: true,
+    },
+  });
+  const updatedUser = await Prisma.user.update({
+    where: { id: user.id },
+    data: { rootFolderId: userEntry.folders[0].id },
+  });
+  res.redirect("/register-success");
 };
 
 module.exports.registerSuccess = async function (req, res, next) {
-  res.render("/login", {
+  return res.render("login", {
     messages: ["Registration Successful, please log in"],
   });
 };
@@ -90,7 +105,27 @@ module.exports.logoutGet = async function (req, res, next) {
 module.exports.protected = async function (req, res, next) {
   if (!req.isAuthenticated()) {
     // Passport's built-in method
-    return res.status(401).send("Unauthorized"); // Or redirect to login
+    return res.redirect("/login");
   }
+  next();
+};
+
+module.exports.userFolderPermission = async function (req, res, next) {
+  if (!req.isAuthenticated()) {
+    return res.redirect("/login");
+  }
+
+  const folder = await Prisma.folder.findFirst({
+    where: { id: req.params.folderid },
+    include: {
+      children: true,
+      files: true,
+    },
+  });
+
+  if (folder.ownerId != req.user.id) {
+    return res.status(401).send("Unauthorized");
+  }
+  res.locals.currentFolder = folder;
   next();
 };

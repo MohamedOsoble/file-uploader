@@ -15,20 +15,18 @@
       <div class="content-header">
       </div>
       <div class="form-container">
-        <h1>Upload a new file</h1>
-        <form action="/upload" method="POST" enctype="multipart/form-data">
-          <label for="file_name">File name: </label>
-          <input type="text" name="file_name">
-          <label for="parent_folder">Parent folder: </label>
+        <h1>Create a folder</h1>
+        <form action="/createfolder" method="POST">
+          <label for="foldername">Name: </label>
+          <input type="text" name="foldername">
+          <label for="parentfolder">Parent: </label>
           <select name="parentfolder">
             <% user.folders.forEach((folder) => { %>
             <option value="<%=folder.id%>"><%=folder.name%></option>
             <%})%>
           </select>
-          <label for="uploaded_file">Select File: </label>
-          <input type="file" class="form-control-file" name="uploaded_file">
           <br>
-          <button class="green-btn" type="submit">Upload</button>
+          <button class="green-btn" type="submit">Create</button>
         </form>
       </div>
       <%- include("partials/errors") %>

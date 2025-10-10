@@ -15,23 +15,20 @@
       <div class="content-header">
       </div>
       <div class="form-container">
-        <h1>Update folder:</h1>
-        <form action="/edit-folder" method="POST">
-          <input hidden name="folder_id" value="<%=currentFolder.id%>">
-          <label for="folder_name">Folder name: </label>
-          <input type="text" name="folder_name" value="<%=currentFolder.name%>">
-          <label for="parent">Parent </label>
-          <select name="parent_folder">
-            <% user.folders.forEach((folder) => { %>
-            <option value="<%=folder.id%>"><%=folder.name%></option>
-            <%})%>
-          </select>
-          <br>
+        <h1>Update Profile:</h1>
+        <form action="/edit-profile" method="POST">
+          <p><strong>Username: </strong><%=user.username%></p>
+          <label for="firstname">First Name: </label>
+          <input type="text" value="<%=user.profile.firstName%>" name="firstname">
+          <label for="lastname">Last Name: </label>
+          <input type="text" value="<%=user.profile.lastName%>" name="lastname">
+          <label for="email">Email: </label>
+          <input type="email" value="<%=user.email%>" name="email">
+          <label for="age">Age: </label>
+          <input type="number" value="<%=user.profile.age%>" name="age">
+          <label for="bio">Bio: </label>
+          <textarea name="bio"><%=user.profile.bio%></textarea>
           <button class="green-btn" type="submit">Update</button>
-        </form>
-        <form action="/delete-folder" method="POST">
-          <input hidden name="folder_id" value="<%=currentFolder.id%>">
-          <button class="red-btn" type="submit">Delete folder</button>
         </form>
       </div>
       <%- include("partials/errors") %>

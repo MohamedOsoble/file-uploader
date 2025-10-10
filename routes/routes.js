@@ -16,11 +16,13 @@ const router = Router();
 router.get("/", (req, res, next) => {
   res.render("index");
 });
+router.get("/profile", Protected, appController.profileGet);
+router.get("/edit-profile", Protected, appController.profileEdit);
+router.post("/edit-profile", Protected, appController.updateProfile);
 
 router.get("/resetDb", appController.resetDb);
 
 // File routes
-router.get("/profile", Protected, appController.profileGet);
 router.get("/myfiles", Protected, fileController.getMyFiles);
 router.get("/upload", Protected, fileController.getUploadFile);
 router.post(
